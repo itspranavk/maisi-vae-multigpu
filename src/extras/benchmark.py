@@ -36,7 +36,6 @@ def step(
     repetitions: int = 10,
 ) -> float:
     starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
-    repetitions = 10
     timings = np.zeros((repetitions, 1))
     peaks = np.zeros((repetitions, 1))
 
@@ -51,8 +50,8 @@ def step(
             peak_mem = torch.cuda.max_memory_allocated() / 1024**3
 
             torch.cuda.synchronize()
-            time = starter.elapsed_time(ender) / 100
-            timings[rep] = time
+            time_taken = starter.elapsed_time(ender) / 1000
+            timings[rep] = time_taken
             peaks[rep] = peak_mem
 
     return round(np.mean(timings), 2), round(np.mean(peaks), 2)

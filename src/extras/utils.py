@@ -36,7 +36,6 @@ def load_vae_model(
     num_splits: int = 1,
     num_devices: int = 1,
     device: torch.device = "cuda",
-    amp: bool = True,
 ) -> nn.Module:
     if version == 1 and num_devices != 1:
         raise ValueError(
