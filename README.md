@@ -9,7 +9,9 @@ Concurrent processing across multiple devices significantly accelerates inferenc
 
 ## Usage
 
-Tensor splitting across multiple devices is implemented as a drop-in replacement for [`AutoencoderKLMaisi`](https://github.com/Project-MONAI/MONAI/blob/main/monai/apps/generation/maisi/networks/autoencoderkl_maisi.py). You can replace all `AutoencoderKLMaisi` imports with the code provided [here](./src/autoencoderkl_maisi.py). Note that the updated implementation includes a new argument `num_devices`, which defaults to 1. Setting this to `None` uses all available GPUs for TSP. All usage is identical to MAISI For further details, please follow their instructions [here](https://github.com/NVIDIA-Medtech/NV-Generate-CTMR). An example usage is also provided [here](./src/demo.ipynb). 
+An improved version of `AutoencoderKLMaisi` implements multi-device TSP and several tweaks to reduce cost GPU-to-CPU communication bottlenecks. It is a drop-in replacement for [`AutoencoderKLMaisi`](https://github.com/Project-MONAI/MONAI/blob/main/monai/apps/generation/maisi/networks/autoencoderkl_maisi.py). You can replace all `AutoencoderKLMaisi` imports with the code provided in this repository [here](./src/autoencoderkl_maisi.py). Note that a new argument `num_devices` to control the number of devices for TSP is added (defaults to 1). Setting this to `None` uses all available GPUs for TSP.
+
+An example is also provided [here](./src/extras/demo.ipynb). For further details, please follow their instructions on [NVIDIA-Medtech/NV-Generate-CTMR](https://github.com/NVIDIA-Medtech/NV-Generate-CTMR). 
 
 ## Benchmark
 
